@@ -1,7 +1,7 @@
-package com.stevenfrew.tika.dgn.detect.test
+package com.stevenfrew.tika.detect.dgn.test
 
-import com.stevenfrew.tika.dgn.detect.DGN_V7_MEDIA_TYPE
-import com.stevenfrew.tika.dgn.detect.DGN_V8_MEDIA_TYPE
+import com.stevenfrew.tika.detect.dgn.DGN_V7_MEDIA_TYPE
+import com.stevenfrew.tika.detect.dgn.DGN_V8_MEDIA_TYPE
 import org.apache.tika.Tika
 import org.apache.tika.mime.MediaType
 import org.junit.jupiter.api.Assertions.assertEquals
