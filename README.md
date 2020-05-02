@@ -1,5 +1,5 @@
 # tika-dgn-detector
-A Tika Detector (not a Parser!) for MicroStation DGN drawings (v7 &amp; v8)
+An Apache Tika Detector (not a Parser!) for MicroStation DGN drawings (v7 &amp; v8)
 
 Detects v7 DGNs using a simple magic string detection in the opening bytes of the files.
 
