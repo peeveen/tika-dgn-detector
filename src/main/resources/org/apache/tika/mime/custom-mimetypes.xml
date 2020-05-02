@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info>
+    <!-- MicroStation v7 DGN file -->
+    <!-- Can be detected with a byte pattern in the header. -->
+    <!-- Sometimes first byte is C8, sometimes it is 08. -->
+    <mime-type type="image/vnd.dgn">
+        <_comment>MicroStation v7 drawing</_comment>
+        <glob pattern="*.dgn" />
+        <glob pattern="*.dgnlib" />
+        <glob pattern="*.cel" />
+        <magic priority="50">
+            <match value="0x0809FE02" type="string" offset="0" mask="0x0FFFFFFF" />
+        </magic>
+    </mime-type>
+    <!-- MicroStation v8 DGN file -->
+    <!-- Much more complex, requires custom DgnV8Detector class -->
+    <mime-type type="image/vnd.dgn;ver=8">
+        <_comment>MicroStation v8 drawing</_comment>
+        <glob pattern="*.dgn" />
+        <glob pattern="*.dgnlib" />
+        <glob pattern="*.cel" />
+    </mime-type>
+</mime-info>

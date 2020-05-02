@@ -1,0 +1,1027 @@
+* Version=08050000 	* Do not edit this line
+*       *
+* ==============================================================================
+*
+* PARAMETER FILE
+* --------------
+* THIS IS A DATA FILE WHICH HOLDS THE USER-CHANGEABLE SYSTEM DEFAULTS FOR
+* MOSS.
+*
+* ==============================================================================
+*       *
+* FILE FORMAT
+* -----------
+*
+*           A) ANY DATA FOLLOWING AN ASTERISK '*' IS DESIGNATED A COMMENT
+*              AND IS IGNORED.
+*       *
+*           B) EACH LINE OF DATA MUST BEGIN WITH A KEYWORD, WHICH MUST CONTAIN
+*              8 CHARACTERS AND BEGIN IN COLUMN 1.
+*
+*           C) A KEYWORD MUST BE IMMEDIATELY FOLLOWED BY AN EQUALS SIGN '='.
+*              THERE MUST BE NO SPACES BETWEEN THE KEYWORD AND THE EQUALS SIGN.
+*       *
+*           D) THE EQUALS SIGN MUST BE IMMEDIATELY FOLLOWED BY THE VALUE TO BE
+*              ASSIGNED TO THE SYSTEM PARAMETER. THERE MUST BE NO SPACES 
+*              BETWEEN THE EQUALS SIGN AND THE VALUE. THE VALUE CAN BE REAL,
+*              INTEGER OR CHARACTER, BUT IT MUST BE OF THE SAME TYPE AS THE 
+*              EXISTING PARAMETER.
+*       *
+*           E) WHEN CHARACTER VALUES ARE USED THEY ARE ASSUMED TO BE 8
+*              CHARACTERS IN LENGTH. IF THE VALUE IS SHORTER THAN 8 CHARACTERS
+*              IT MUST BE PADDED OUT TO 8 CHARACTERS USING BLANKS.
+*
+*       *
+*           F) FOR TRANSLATION PURPOSES. INSERT A * IN COLUMN 9 FOR EVERY 5 OR 
+*              SO LINES OF CONTINUOUS COMMENTS
+*
+* ==============================================================================
+* PARAMETERS FOR METRIC/IMPERIAL CONVERSIONS
+* ------------------------------------------
+* ******************************************************************
+* THESE PARAMETERS MUST PRECEDE ANY OTHER PARAMETERS WHICH ARE INPUT
+* IN METRIC OR IMPERIAL DISTANCES
+* ******************************************************************
+*
+METR_IMP=0.3048    * UNITS OF LINEAR MEASURE : 1.0=METRIC , 0.3048=IMPERIAL.
+*
+MET2IMP2=2.54      * IMPERIAL/METRIC CONVERSION FACTOR(USED IN DRAW)
+*                       1.0 -METRIC
+*                       2.54-IMPERIAL
+*                       (CAN BE SET BY KODE18)
+*
+* SYSTEM PARAMETERS 
+* -----------------
+*
+*
+LINEPAGE=-1        * NUMBER OF LINES PER PAGE.
+*                       MUST BE >  5
+*                       OR        -1  TO TURN PAGING OFF
+*
+BANNEROP=1         * MOSS BANNER OUTPUT SWITCH    
+*                      0 - NO BANNER OUTPUT       
+*                      1 - BANNER OUTPUT (DEFAULT)
+*                                                 
+LGSWITCH=1         * LOGGING FILE SWITCH
+*                      0 - NO LOG OF INPUT PRODUCED
+*                      1 - LOG OF INPUT PRODUCED ON MOSSV92INP.LOG
+*
+LGIGSWCH=2         * LOGGING FILE SWITCH(IMOSS CURSOR HITS)
+*                      0 - NO LOG OF INPUT PRODUCED
+*                      1 - LOG OF INPUT PRODUCED ON MOSSV92IGM.LOG
+*                      2 - LOG OF INPUT BUT NO ARCHIVE.
+*
+TRIAPRNT=1000      * MIN. NUMBER OF POINTS FOR TRIANGLE TRACE
+*                    MUST BE >1
+*
+READINFO=00        * NUMBER OF TIMES README FILE MESSAGE IS INVOKED
+*
+*
+MODELIST=2         * MODEL LIST SORT ORDER
+*                      0 - AS STORED ON MODEL FILE
+*                      1 - ALPHABETICAL SORT
+*                      2 - DATE LAST USED IN REVERSE (DEFAULT)
+* UNIT PARAMETERS 
+* ---------------
+*
+*
+IN_ANGLE=0         * EXPECTED ANGULAR MEASURE INPUT UNITS.
+*                       THIS VALUE CAN BE MODIFIED DURING EXECUTION WITH 017  
+*                       0 = DEG MIN SEC FOR MOST OPTIONS,DEG AND DEC FOR SOME   
+*                       1 = DEGREES MINUTES AND SECONDS THROUGHOUT              
+*                       2 = GRADS                                               
+*                       3 = DEGREES AND DECIMAL DEGREES                         
+*                       4 = RADIANS                                             
+*                       5 = QUADRANT BEARINGS
+*
+OUT_ANGL=0         * EXPECTED ANGULAR MEASURE OUTPUT UNITS.
+*                       THIS VALUE CAN BE MODIFIED DURING EXECUTION WITH 017  
+*                       0 = DEG MIN SEC FOR MOST OPTIONS,DEG AND DEC FOR SOME   
+*                       1 = DEGREES MINUTES AND SECONDS THROUGHOUT
+*                           (IF QUAD_BER=1 THEN BEARINGS ARE OUTPUT IN 
+*                                                        QUAD. BEARINGS)      
+*                       2 = GRADS                                               
+*                       3 = DEGREES AND DECIMAL DEGREES                         
+*                       4 = RADIANS                                             
+*
+QUAD_BER=0         * INDICATOR FOR QUADRANT BEARING ANGULAR MEASURE OUTPUT.
+*                       THIS VALUES CAN BE MODIFIED DURING EXECUTION WITH 017  
+*                       0 = NO QUADRANT BEARINGS REQUIRED
+*                       1 = QUADRANT BERINGS REQUIRED 
+*                           (IF THIS IS SET TO 1 THEN SET OUT_ANGL = 1)
+*
+YXORD_IN=0         * INDICATOR FOR USA COORDINATE NOTATION FOR INPUT DATA.
+*                       THIS VALUE CAN BE MODIFIED DURING EXECUTION WITH 017
+*                       0 = BRITISH,DANISH AND CZECH2 NOTATION 
+*                       1 = USA,CZECH1,FAR EAST NOTATION
+*
+YXORDOUT=0         * INDICATOR FOR USA COORDINATE NOTATION FOR OUTPUT DATA.
+*                       THIS VALUE CAN BE MODIFIED DURING EXECUTION WITH 017
+*                       0 = BRITISH NOTATION  X/Y - EG. EASTING THEN NORTHING
+*                       1 = USA NOTATION      Y/X _ EG. NORTHING THEN EASTING
+*                       2 = DANISH NOTATION   Y/X _ EG. NORTHING THEN WESTING
+*                       3 = CZECH1 NOTATION   X/Y _ EG. SOUTHING THEN WESTING
+*                       4 = CZECH2 NOTATION   Y/X _ EG. WESTING THEN SOUTHING 
+*                       5 = FAR EAST NOTATION X/Y _ EG. NORTHING THEN EASTING 
+*
+X_OSHIFT=0.0       * VALUE NEEDED TO BE ADDED TO NEGATIVE X COORDINATES 
+*                    TO ENSURE ALL POSITIVE VALUES INTERNALLY          
+*                    TYPICAL EXAMPLE 10000000.0
+*
+Y_OSHIFT=0.0       * VALUE NEEDED TO BE ADDED TO NEGATIVE Y COORDINATES 
+*                    TO ENSURE ALL POSITIVE VALUES INTERNALLY          
+*                    TYPICAL EXAMPLE 10000000.0
+*
+* ADDITIONAL OPTION 017 PARAMETERS 
+* --------------------------------
+*
+CURVEFIT=1         * CURVE FITTING INDICATOR
+*                      0 - CURVE FITTING OFF
+*                      1 - CURVE FITTING ON (DEFAULT)
+*
+TRIAECHO=0         * TRIANGLE ECHO ERROR
+*                      0 - NO ECHO (DEFAULT)
+*                      1 - NORMAL ECHO 
+*                      2 - DOUBLE ECHO
+*
+FLATTRIA=1         * ALLOW/BAN PRODUCTION OF FLAT TRIANGLES
+*                      O - DISALLOW FLAT TRIANGLES
+*                      1 - ALLOW FLAT TRIANGLES (DEFAULT)
+*
+NVOFFSET=0         * SELECT NORMAL OR VERTICAL OFFSETS WITHIN
+*                    DESIGN OPTIONS THAT ALLOW NORMAL OFFSETS
+*                      0 - USE VERTICAL OFFSETS
+*                      1 - USE NORMAL OFFSETS
+*
+SSTATLAB=PSSA      * SURVEY STATION STRING LABEL
+*
+SINTTOLE=20.0      * SECONDARY INTERPOLATION TOLERANCE
+*
+POINTTOL=0.01      * POINT SEARCH TOLERANCE
+*
+SECTOFFL=-300.0    * LEFT SECTION OFFSET 
+*
+SECTOFFR=300.0     * RIGHT SECTION OFFSET
+*
+BASEBEAR=0.0       * SECTION BASELINE BEARING
+*                    (SEE IN_ANGLE FOR UNITS = DECIMAL DEGREES)                 
+*
+SINTOFFS=20.0      * SECONDARY INTERPOLATION OFFSET
+*
+* DESIGN PARAMETERS 
+* -----------------
+*
+AHDETOLR=0.010     * Default Chord-to-Arc tolerance
+*                    The chord-to-arc tolerance parameter only affects the
+*                     addition of points to the design / survey (202) ; it has NO
+*                    effect on the drawing.
+*
+MRSWITCH=0         * RADIUS/M-VALUE SWITCH(USED IN VALGN)-FRENCH REQUIREMENT.
+*                      0 - M-VALUE USED WITHIN VALGN
+*                      1 - RADIUS USED WITHIN VALGN
+*                      2 - K-VALUE USED WITHIN VALGN
+*
+RLADEFLT=0         * DEFAULT VALUE FOR TRANSITION USAGE (RL/A). USED IN 
+*                    HALGN AND DRAW.
+*                      0 - RL
+*                      1 - A
+*
+FDESWTCH=0         * FRENCH DESIGN 133 SWITCH - FRENCH REQUIREMENT.
+*                      0 - DESIGN 133 USES ENGLISH RULES
+*                      1 - DESIGN 133 USES FRENCH RULES
+*
+CUBIFACT=0         * METHOD OF CUBIC TRANSITION CURVE CALCULATION 
+*                      0 - WITHOUT FACTOR ADDED                   
+*                      1 - WITH FACTOR ADDED AND ENHANCED CURVE TO
+*                          CURVE CUBIC THEORY
+*                      3 - WITH NSW FACTOR ADDED
+*                      SEE USER MANUAL FOR DETAILS OF CUBIC FORMULA
+*                                                                 
+CUBILENG=0         * INPUT DEFINITION CUBIC TRANSITION LENGTH     
+*                      0 - CURVE lENGTH                           
+*                      1 - TANGENT lENGTH                         
+*                      SEE USER MANUAL FOR DETAILS OF
+*                          CUBIC TRANSITION LENGTH CALCULATION
+*                                                                 
+TRANLENG=0         * INPUT DEFINITION CURVE TO CURVE SAME HAND
+*                      TRANSITION LENGTH
+*                      0 - SPECIFIED LENGTH TO TRANSITION ORIGIN
+*                      1 - SPECIFIED LENGTH IS ACTUAL LENGTH
+*
+*===============================================================================
+*
+* PLOTTER PARAMETERS.
+* -------------------
+*
+*PEN COLOURS REMOVED TO DRCOLOURS FILE
+*
+INIMV_X1=0.0       * THESE THREE VALUES DETERMINE THE INITIAL PEN MOVE.
+INIMV_Y1=0.0       * THEY ARE USED THUS:    CALL PLOT(X1,Y1,3)
+INIMV_Y2=0.0       *                     +  CALL PLOT(X1,Y2,-3)
+*                    SET THE THREE VALUES TO 0.0 IF YOU DON'T WANT AN
+*                    INITIAL PEN MOVE
+*                    SET THE THREE VALUES AS FOLLOWS TO MOVE THE PEN
+*                    TO RIGHT HAND SIDE FOR A DRUM PLOTTER
+*                       INIMV_X1=10.0
+*                       INIMV_Y1=-75.0
+*                       INIMV_Y2=-70.0
+*
+ARSWITCH=0         * EXTENDED .PIC FILE FUNCTIONALLITY.
+*                      0 - NOT EXTENDED
+*                      1 - EXTENDED
+*
+PICOORDS=1.0       * UNITS IN WHICH COORDINATES ARE HELD ON THE PICTURE FILE.
+*                      1.0       - CENTIMETRES.
+*                      0.3937009 - INCHES.
+*
+CHARATIO=100       * CHARACTER WIDTH/HEIGHT RATIO*100. IF YOUR INSTALLATION'S
+*                      SUBROUTINE SYMBOL ALLOWS TEXT TO BE CONTINUED WITH
+*                      THE X=999.0,Y=999.0 FACILITY, USE VALUE -1.
+*
+*
+*===============================================================================
+*
+* DRAW PARAMETERS.
+* ----------------
+*
+DPAPORIN=1         *  SHEET ORIENTATION          : 1 = LANDSCAPE
+*                                                : 2 = PORTRAIT
+*
+DPAPTYPE=0         *  PAPER TYPE (800)           : 0 = INTERACTIVE
+*                                                : 1 = PLOTTER
+*
+DEFPAGLN=36.0      *  DEFAULT PAGE LENGTH (800)  : +VE REAL NO. 
+*                                                : (EG. 'A1' LENGTH = 84.1)
+*
+DEFPAGWD=24.0      *  DEFAULT PAGE WIDTH (800)   : +VE REAL NO. 
+*                                                : (EG. 'A1' WIDTH = 59.4)
+*
+DPAGMAXL=100000    *  MAXIMUM ALLOWABLE PAGE     : +VE REAL NO. (INSTALLATION
+*                      LENGTH (800)              : DEPENDENT)
+*
+DPAGMAXW=100000    *  MAXIMUM ALLOWABLE PAGE     : +VE REAL NO. (INSTALLATION
+*                      WIDTH (800)               : DEPENDENT)
+*
+DFACPLOX=1.0       *  X PLOT FACTOR (800)        : +VE REAL NO.
+*
+DFACPLOY=1.0       *  Y PLOT FACTOR (800)        : +VE REAL NO.
+*
+DMARSIZE=0.5       *  MARGIN SIZE (802)          : +VE REAL NO.
+*
+DPAGEING=0         *  PAGEING (803)              : 0 = NO PAGEING
+*                                                : 1 = PAGEING
+*
+DATRUNCN=1         *  TRUNCATION (803)           : 0 = NO TRUNCATION
+*                                                : 1 = TRUNCATION
+*
+DPENCOLR=2         *  PEN COLOUR (805 AND 806)   : 1 = BLACK
+*                                                : 2 = RED
+*                                                : 3 = GREEN
+*                                                : 4 = BLUE
+*                                                : 5 = CYAN
+*                                                : 6 = YELLOW
+*                                                : 7 = ORANGE
+*                                                : 8 = PINK
+*                                                : 9 = GREY
+*                                                : 10= PALEBLUE
+*                                                : (INSTALLATION DEPENDENT,
+*                                                :  IN DRCOLOURS.DAT)
+*
+DCHRTYPE=N         *  CHARACTER TYPE (808)       : N = NO CONVERSION
+*                                                : L = ALL CHARACTERS LOWERCASE
+*                                                :      (MACHINE DEPENDENT)
+*                                                : U = ALL CHARACTERS UPPERCASE
+*
+DCHARHYT=0.1       *  CHARACTER HEIGHT (808)     : +VE REAL NO.
+*
+DNUMDECP=3         *  NO. OF DECIMAL PLACES (808): +VE INTEGER NO.
+*
+DCHRATIO=1.0       *  CHARACTER ASPECT RATIO     : +VE REAL NO. (GKS MACHINE
+*                      (WIDTH/HEIGHT) (808)      : DEPENDENT)
+*
+DCHARSPC=0.0       *  CHARACTER SPACING (808)    : +VE REAL NO. (GKS MACHINE
+*                                                : DEPENDENT)
+*
+DLINSPAC=0.5       *  LINE SPACING INTERVAL      : +VE REAL NO. RELATED TO
+*                      FOR TEXT (808)            : CHARACTER HEIGHT
+*                      RATIO OF CH. HT.
+*
+*
+DFONTYPE=          *  DEFAULT FONT NAME (808)    :      = USE H/W FONT
+*                                                : SOF1 = DEFAULT S/W FONT1.MFF
+*                                                : SOFn = USER S/W FONT n
+*                                                         FONT2.MFF to
+*                                                         FONT9.MFF
+*
+DFRAMTYP=0         *  FRAME TYPE (821)           : 0 = NO FRAME
+*                                                : 1 = FRAME
+*                                                : 2 = WINDOW
+*                                                : 3 = REGISTRATION MARKS
+*
+DGRDTIKX=0.5       *  GRID X TICK SIZE (822)     : +VE REAL NO.
+*
+DGRDTIKY=0.5       *  GRID Y TICK SIZE (822)     : +VE REAL NO.
+*
+DINTSEQP=1         *  POINT SEQUENCE NUMBER      : +VE INTEGER NO.
+*                      INTERVAL (825)            :
+*
+DLABTYPE=0         *  LABELS (825 AND 826)       : 0 = NO LABEL
+*                                                : 1 = LABEL
+*
+DPIPLENG=0.1       *  PIP LENGTH (825 AND 860)   : +VE REAL NO.
+*
+DSYMLENG=1.0       *  STANDARD SYMBOL LENGTH AS  : +VE REAL NO.
+*                      A PROPORTION OF CURRENT   :
+*                      CHARACTER SIZE (825(DETA)):
+*
+DCHMAINT=100.0     *  CHAINAGE MARKING INTERVAL  : +VE REAL NO.
+*                      (826,866,867)             :
+*
+DOFFSEQP=0.1       *  TEXT OFFSET OF POINT       : REAL NO.
+*                      SEQUENCE NUMBER (PSN)(865):
+*
+DPSNMINT=1         *  PSN MARKING INTERVAL (865) : +VE INTEGER NO.
+*
+DCHAMPIP=0.1       *  CHAINAGE MARKING PIP       : +VE REAL NO.
+*                      SIZE (866)                :
+*
+DCHAMOFF=0.5       *  CHAINAGE MARKING TEXT      : REAL NO.
+*                      OFFSET (866)              :
+*
+DCHAMAPI=0.1       *  CHAINAGE-BOTH-SIDE-MARKING : +VE REAL NO.
+*                      PIP SIZE (867)            :
+*
+DCHAMAOF=-0.5      *  CHAINAGE-BOTH-SIDE-MARKING : REAL NO.
+*                      TEXT OFFSET (867)         :
+*
+DSPOTLEV=0.5       *  SPOT LEVEL TEXT            : REAL NO.
+*                      OFFSET (868)              :
+*
+DSTRAOFF=0.5       *  STRING DIMENSION ANNOTATION: REAL NO.
+*                      TEXT OFFSET (869)         :
+*
+DHATANGL=0.0       *  HATCHING ANGLE (DEGREES)   : REAL NO.
+*                      (875,877,879,891,892,893) :
+*
+*
+DHATSPAC=0.10      *  HATCH SPACING (CMS)        : REAL NO.
+*                      (875,877,879,891,892,893) :
+*
+*
+DGRADTYP=0         *  GRADIENT IN PERCENT  = 0   : INTEGER NO.
+*                                 PERMILLE = 1   : 
+*                      (864,7=-23)
+*                      THIS SWITCH WILL ONLY OPERATE IF PERCENT HAS
+*                      BEEN REQUESTED ON OPTION 809 OR SET BY
+*                      THE KEYWORD XFCANDEF (BELOW)
+*
+DCLOTHTY=0         *  CLOTHOID ANNOTATION        : INTEGER NO.
+*                       CL = 0
+*                       RP = 1
+*                      (869,4=-25)
+*
+DRDSCALE=1968.5039 *  DEFAULT DRAWING SCALE      : REAL NO.
+*                      (803)
+*
+DINFISYM=1         *  MACRO SYMBOL SWITCH FOR INFINITY RADII
+*                        0 - PRINT OUT "INFINITY"           
+*                        1 - USE MACRO SYMBOL               
+*                                                                
+*                                                                
+DREALINT=0         *  SWITCH TO DETERMINE WHETHER PARTIAL DISTANCES
+*                     ARE CALCULATED USING REAL OR INTERPOLATED POINTS
+*                     ON A PAGED DRAWING
+*                        0 - USE REAL POINTS
+*                        1 - USE INTERPOLATED POINTS
+*
+DGSTGCOD=1         *  GEOMETRY STRING CODES       :INTEGER NO.   
+*                         VALID CODES:                           
+*                       1. HTPS - HORIZONTAL TANGENT POINTS      
+*                       2. HIPS - HORIZONTAL INTERSECTION POINTS 
+*                       3. HCEN - HORIZONTAL ARC CENTRES         
+*                       4. VTPS - VERTICAL TANGENT POINTS        
+*                       5. VIPS - VERTICAL INTERSECTION POINTS   
+*                       6. VFPS - VERTICAL FLAT POINTS           
+*                       7. VMOS - VERTICAL MID-ORDINATE POINTS   
+*                       8. SUPE - SUPERELEVATION ANNOTATION
+*                                                           
+XFCANDEF=11        *  SUPERELEVATION UNITS
+*                     (809,field 4)
+*
+*                     This value is interpreted as two columns.
+*                     10's column :
+*                     CROSSFALL UNITS          1* = PERCENT
+*                                              2* = DECIMAL PERCENT
+*                                              3* = 1:N
+*
+*                     units value if metric :
+*                     CANT UNITS (METRIC)      *1 = METRES
+*                                              *2 = CENTIMETRES
+*                                              *3 = MILLIMETRES
+*
+*                     units value if imperial :
+*                     CANT UNITS (IMPERIAL)    *1 = DECIMAL FEET
+*                                              *2 = DECIMAL INCHES
+* 
+CLUTTEXT=1         *  CLUTTERED TEXT SWITCH
+*                        0 - DO NOT REMOVE CLUTTERED TEXT           
+*                        1 - REMOVE CLUTTERED TEXT    
+*===============================================================================
+*
+* GEOMETRY STRING ANNOTATION
+* --------------------------
+*       *
+* Draw minor option 869 allows you to output Horizontal and Vertical
+* Tangent point data start/end labels
+*       *
+* The default start/end labels are shown for Horizontal and Vertical
+* between - and =, the definition of the label is shown after the *.
+*       *
+* To change the label appended to the drawing using DRAW minor option
+* 869 field 4=-46;
+*       *
+* Enter after the = strt and end labels
+* Examples
+*       ABCD/ABCD gives start label ABCD and end label ABCD
+*       ABCD/EFGH gives start label ABCD and end label EFGH
+*       /EFGH gives end label EFGH only
+*       ABCD/ gives start label ABCD only
+*       *
+* Notes
+* If between = and * is blank, the code between - and = is used.
+* A maximum of 4 characters are permitted either side of the /.
+*
+************************************************************
+* THE CODES ARE UNNECESSARY FOR BRITISH ANNOTATION AND HAVE
+* THEREFORE BEEN COMMENTED OUT IN THE FOLLOWING LINES
+* IF THE SPECIAL ANNOTATION IS REQUIRED - REMOVE THE
+* ASTERISK AND SPACE IN FRONT OF EACH LINE COMMENCING
+* WITH GEH OR GEV BELOW.
+************************************************************
+*       *
+* HORIZONTAL             ELEMENT BEFORE        CODE   ELEMENT AFTER
+* GEH-PBT =/GA       *         NONE              PBT      STRAIGHT
+* GEH-PBC =/BA       *         NONE              PBC      ARC
+* GEH-PAT =GE/       *         STRAIGHT          PAT      NONE
+* GEH-PAC =BE/       *         ARC               PAC      NONE
+* GEH-TS  =GE/UA     *         STRAIGHT          TS       SPIRAL
+* GEH-ST  =UE/GA     *         SPIRAL            ST       STRAIGHT
+* GEH-CS  =BE/UA     *         ARC               CS       SPIRAL
+* GEH-SC  =UE/BA     *         SPIRAL            SC       ARC
+* GEH-SS  =UE/UA     *         SPIRAL            SS       SPIRAL
+* GEH-PC  =GE/BA     *         STRAIGHT          PC       ARC
+* GEH-PT  =BE/GA     *         ARC               PT       STRAIGHT
+* GEH-PRC =BE/BA     *         ARC               PRC      ARC
+* GEH-PCC =BE/BA     *         ARC               PCC      ARC
+*
+*
+*       *
+* VERTICAL               ELEMENT BEFORE        CODE   ELEMENT AFTER
+* GEV-PBT =/GA       *         NONE              PBT      GRADE
+* GEV-PBC =/BA       *         NONE              PBC      CURVE
+* GEV-PAT =GE/       *         GRADE             PAT      NONE
+* GEV-PAC =GA/       *         CURVE             PAC      NONE
+* GEV-PT  =BE/GA     *         CURVE             PT       GRADE
+* GEV-PC  =GE/BA     *         GRADE             PC       CURVE
+* GEV-TT  =GE/GA     *         GRADE             TT       GRADE
+* GEV-VX  =BE/BA     *         CURVE             VX       CURVE
+*       *            *             Curve high or low point 
+* GEV-VM  =BE/BA     *         CURVE             VM       CURVE
+*                    *             Curve middle ordinate point
+* GEV-PCC =BE/BA     *         CURVE             PCC      CURVE
+*                    *             Curve same sense
+* GEV-PRC =BE/BA     *         CURVE             PRC      CURVE
+*                    *             Curve opposite sense
+* GEV-VMX =BE/BA     *         CURVE             VMX      CURVE
+*       *            *             Curve coincident high or low
+*                    *             and middle ordinate point
+*   
+*===============================================================================
+*       *
+* STANDARD/CURVED INTERFACE PARAMETERS 
+* ----------------------------------------
+*
+GRADINTR=0.667     * DEFAULT GRADIENT FOR STANDARD/CURVED INTERFACE
+*
+TANGINTR=3.0       * DEFAULT TANGENT LENGTH FOR STANDARD/CURVED INTERFACE
+*
+WDTHINTR=2.0       * DEFAULT DITCH WIDTH FOR STANDARD/CURVED INTERFACE
+*
+DPTHINTR=0.3       * DEFAULT DITCH DEPTH FOR STANDARD/CURVED INTERFACE
+*
+*===============================================================================
+*
+* 
+* ALIGNMENT PARAMETERS 
+* ====================
+*       *
+* HORIZONTAL DISPLAY
+* ------------------
+* 
+*   Available colours                   Available line styles
+*   -----------------                   ---------------------
+*   
+*     1 --- Black                           1 --- Solid   
+*     2 --- Red                             2 --- Dashed 
+*     3 --- Green                           3 -- Dotted
+*     4 --- Blue                            4 -- Dot/dash
+*     5 --- Cyan
+*     6 --- Yellow
+*     7 --- Orange
+*     8 --- Pink
+*     9 --- Grey
+*     10--- Paleblue
+*
+*       *
+AHDIBGDC=5         * Background colour
+*
+AHDIBGDS=1         * Background style
+*
+AHDISGDC=5         * Spline Background colour
+*
+AHDISGDS=1         * Spline Background style
+*
+AHDIELEC=6         * Element colour/working colour 
+*
+AHDIELES=1         * Element style/working style 
+*
+AHDISLEC=6         * Spline element colour/working colour (splines)
+*
+AHDISLES=1         * Spline element style/working style (splines)
+*
+AHDISTRC=5         * Straights colour 
+*
+AHDISTRS=1         * Straights style
+*
+AHDIARCC=3         * Arcs colour
+*
+AHDIARCS=1         * Arcs style
+*
+AHDITRNC=6         * Trans colour
+*
+AHDITRNS=1         * Trans style
+*
+AHDIDIRA=1         * Direction arrows        1 --- Drawn
+*                                            2 --- Not drawn             
+*
+AHDITPTM=1         * Tangent point markers   1 --- Drawn
+*                                            2 --- Not drawn             
+*                                                      
+AHDITXAN=1         * Auto annotation switch  1 --- Yes
+*                                            2 --- No
+*
+*                  
+* HORIZONTAL DESIGN
+* -----------------
+*                  
+* The chord-to-arc tolerance is held in AHDETOLR under the DESIGN
+* parameters.
+*                  
+AHDEDESP=70.000    * Design speed
+*
+AHDEMINR=250.000   * Minimum radius for spline alignments
+*
+AHDERCLA=0.300     * Maximum RCLA
+*
+AHDEDESM=1         * Design methods       1 --- Element      
+*                                         2 --- I.P.
+*                                         3 --- Spline
+*
+AHDERADU=1         *                      1 --- Radius
+*                                         2 --- DOC (A)
+*                                         3 --- DOC (C)
+*
+AHDECRVI=2         * Curve intersection methods (I.P. only ) 
+*                                         1 --- 3IPS
+*                                         2 --- ALL IPS
+*  
+AHDETRNR=1         * Transition rules     1 --- None
+*                                         2 --- French roads
+*                                         3 --- Dutch rail
+*                                         4 --- German rail
+*
+AHDETRNF=6         * Transition formulae  1 --- Clothoid
+*                                         2 --- Bloss
+*                                         3 --- Cubic
+*                                         4 --- Bi-quadratic
+*                                         5 --- Sine
+*                                         6 --- Notrans
+AHDECDBY=2         * Clothoid defined by  
+*                                         1 --- Rules
+*                                         2 --- N/A     
+*                                         3 --- A value 
+*                                         4 --- RL value
+*                                         5 --- Speed   
+*                                         6 --- Length  
+AHDECOBY=1         * Clothoid overriden by
+*                                         1 --- N/A
+*                                         2 --- Length
+*                                         3 --- RL value
+*                                         4 --- A value
+*                                         5 --- Speed
+*
+*
+AHDEC__A=400.000   * Clothoid defined by A value
+*
+AHDEC_RL=114590.0  * Clothoid defined by RL value
+*
+AHDEC_SP=100.000   * Clothoid defined by SPEED
+*
+* DUTCH TRANSITION
+* ----------------
+*
+*
+AHDTDESS=0.000     * Design speed
+*
+AHDTDEFF=0         * Default deficiency factor
+* 
+AHDTGRDT=1         * Default gradient type
+*                                         1 --- 1:10V
+*                                         2 --- 1:8V 
+*
+AHDTMITC=20.000    * Minimum theoretical crossfall   
+*
+AHDTMATC=270.000   * Maximum theoretical crossfall
+*
+AHDTMAAC=150.000   * Maximum allowable crossfall
+*
+*
+* FRENCH TRANSITION
+* -----------------
+*
+*
+AHFTDESS=1         * Design speed         1 --- 40
+*                                         2 --- 60
+*                                         3 --- 80
+*                                         4 --- 100
+*                                         5 --- 120
+*
+AHFTNOLA=1         * Number of lanes      1 --- 2
+*                                         2 --- 3
+*                                         3 --- 4
+*
+AHFTRDCL=1         * Road classification  1 --- AR 
+*                                         2 --- RP
+*                                         3 --- UR
+*
+*
+* VERTICAL DISPLAY
+* ----------------
+*       *
+*   Available colours                   Available line styles
+*   -----------------                   ---------------------
+*   
+*     1 --- Black                           1 --- Solid   
+*     2 --- Red                             2 --- Dashed 
+*     3 --- Green                           3 --- Dotted
+*     4 --- Blue                            4 --- Dot/dash
+*     5 --- Cyan
+*     6 --- Yellow
+*     7 --- Orange
+*     8 --- Pink
+*     9 --- Grey
+*     10--- Paleblue
+*       *
+*
+AVDIBGDC=5         * Background colour 
+*
+AVDIBGDS=1         * Background style
+*
+AVDISGDC=5         * Spline Background colour
+*
+AVDISGDS=1         * Spline Background style
+* 
+AVDIELEC=6         * Element colour/working colour
+*
+AVDIELES=1         * Element style/working style
+*
+AVDISLEC=6         * Spline element colour/working colour
+*
+AVDISLES=1         * Spline element style/working style
+*
+AVDIGRDC=5         * Grades colour
+*
+AVDIGRDS=1         * Grades style
+*
+AVDIHOGC=1         * Hog curves colour
+*
+AVDIHOGS=1         * Hog curves style
+*
+AVDISAGC=3         * Sag curve colour
+* 
+AVDISAGS=1         * Sag curve style
+*
+AVDIVTPS=1         * Vertical T.P's
+*
+AVDIDIRM=1         * Direction markers    1 --- Drawn
+*                                         2 --- Not drawn
+*
+AVDIHTPS=1         * Horizontal T.P's     1 --- Drawn
+*                                         2 --- Not drawn
+*
+AVDIVERM=1         * Vertex markers       1 --- Drawn
+*                                         2 --- Not drawn
+*                                                      
+AVDITXAN=1         * Auto annotation switch  1 --- Yes
+*                                            2 --- No 
+*                                                      
+*
+* VERTICAL DESIGN
+* ---------------
+*
+*
+AVDEDESM=5         * Design method        4 --- Element
+*                                         5 --- IP
+*                                         6 --- Spline
+AVDECURP=3         * Curve parameter      1 --- M-value
+*                                         2 --- Radius 
+*                                         3 --- K-value 
+*
+AVDECUIM=2         * Curve intersection method (I.P. only)
+*                                         1 --- 3-IPS
+*                                         2 --- ALL IPS  
+*
+AVDEEMHG=0.000     * Extreme M value, hog
+*
+AVDEEMSG=0.000     * Extreme M value, sag
+*
+AVDEERHG=0.000     * Extreme radius, hog
+*
+AVDEERSG=0.000     * Extreme radius, sag
+*
+AVDEEKHG=0.000     * Extreme K value, hog
+*
+AVDEEKSG=0.000     * Extreme K value, sag
+*
+AVDEMAGD=0.080     * Maximum gradient
+*
+AVDEMIGD=0.010     * Minimum gradient
+*
+* The following values only apply to I.P. method
+*
+AVDEDMHG=10.000    * Default M value, hog
+*
+AVDEDMSG=10.000    * Default M value, sag
+*
+AVDEDRHG=1000.0    * Default radius, hog
+*
+AVDEDRSG=1000.0    * Default radius, sag
+*
+AVDEDKHG=10.000    * Default K value, hog
+*
+AVDEDKSG=10.000    * Default K value, sag
+*
+AVDEMICL=100.000   * Minimum curve length
+*
+AVDEDLHG=100.000   * Default length, hog
+*
+AVDEDLSG=100.000   * Default length, sag
+*
+AVDEKVAL=2         * K value              1 --- UK
+*                                         2 --- AASHTO
+*
+AVDEDESS=70        * Design speed
+*
+AVDECREC=2         * Crest criterion
+*                                         1 --- Overtake
+*                                         2 --- Desmin
+*                                         3 --- Absmin
+*
+*===============================================================================
+*                                                                               
+* SUPERELEVATION PARAMETERS                                                     
+* =========================                                                     
+*                                                                               
+* SUPERELEVATION DISPLAY                                                        
+* ----------------------                                                        
+*                                                                               
+SUPCOLOR=2         * Superelevation applied colour                              
+*                    See HORIZONTAL DISPLAY for available                       
+*                    colours                                                    
+*                                                                               
+* SUPERELEVATION DESIGN                                                         
+* ---------------------                                                         
+*                                                                               
+SUPAPPLI=1         * Application              0 --- None                        
+*                                             1 --- Crossfall                   
+*                                             2 --- Cant                        
+*                                                                               
+* CROSSFALL PARAMETERS                                          
+* --------------------                                          
+*                                                               
+CROSUNIT=2         * Crossfall units          1 --- Percent     
+*                                             2 --- Decimal     
+*                                                   percent     
+*                                             3 --- 1 : N       
+*                                                               
+CROSTHEO=0         * Theoretical Crossfall    0 --- Not applied 
+*                                             1 --- Applied     
+*                                                               
+CROSFACT=2.828     *Theoretical Crossfall factor                
+*                                                               
+CROSROUN=1         * Rounding for crossfall   1 --- Nearest     
+*                                             2 --- Up          
+*                                             3 --- Down        
+*                                                               
+CROSTLPC=0.5       * Round up, down or to the nearest           
+*                    (percent)                                  
+CROSTLDC=0.005     * Round up, down or to the nearest           
+*                    (decimal percent)                          
+CROSTL1N=20.0      * Round up, down or to the nearest (1:N)     
+*                                                           
+CROSMNPC=2.5       * Minimum crossfall (percent)            
+CROSMNDC=0.025     * Minimum crossfall (decimal percent)    
+CROSMN1N=40.0      * Minimum crossfall (1:N)                
+*                                                           
+CROSMXPC=7.0       * Maximum crossfall (percent)            
+CROSMXDC=0.07      * Maximum crossfall (decimal percent)    
+CROSMX1N=15.0      * Maximum crossfall (1:N)                
+*                                                           
+CROSINPC=2.5       * Inflection crossfall (percent)         
+CROSINDC=0.025     * Inflection crossfall (decimal percent) 
+CROSIN1N=40.0      * Inflection crossfall (1:N)             
+*                                                           
+* CANT PARAMETERS                                           
+* ---------------                                           
+*                                                           
+CANTUNMT=1         * Cant units (metric)   1 --- mms        
+*                                          2 --- cms        
+*                                          3 --- metres     
+CANTUNIM=1         * Cant units (Imperial) 1 --- inches     
+*                                          2 --- feet       
+*                                                           
+CANTTHEO=0         * Theoretical Cant      0 --- Not applied 
+*                                          1 --- Applied     
+*                                                            
+CANTFACT=0.085     * Theoretical Cant factor                 
+*                                                            
+CANTROUN=1         * Rounding for cant     1 --- Nearest     
+*                                          2 --- Up          
+*                                          3 --- Down        
+*                                                            
+CANTTLMM=5.0       * Round up, down or to the nearest (mm)   
+CANTTLCM=0.5       * Round up, down or to the nearest (cm)   
+CANTTLMT=0.05      * Round up, down or to the nearest (metre)
+CANTTLIN=0.5       * Round up, down or to the nearest (inch) 
+CANTTLFT=0.042     * Round up, down or to the nearest (foot) 
+*                                                            
+CANTMNMM=0.0       * Minimum cant (mm)                       
+CANTMNCM=0.0       * Minimum cant (cm)                       
+CANTMNMT=0.0       * Minimum cant (metre)                    
+CANTMNIN=0.0       * Minimum cant (inch)                     
+CANTMNFT=0.0       * Minimum cant (foot)                     
+*                                                            
+CANTMXMM=150.0     * Maximum cant (mm)                       
+CANTMXCM=15.0      * Maximum cant (cm)             
+CANTMXMT=0.15      * Maximum cant (metre)          
+CANTMXIN=6.0       * Maximum cant (inch)           
+CANTMXFT=0.5       * Maximum cant (foot)           
+*                                                  
+CANTINMM=0.0       * Inflection cant (mm)          
+CANTINCM=0.0       * Inflection cant (cm)          
+CANTINMT=0.0       * Inflection cant (metre)       
+CANTININ=0.0       * Inflection cant (inch)        
+CANTINFT=0.0       * Inflection cant (foot)        
+*                                                  
+* END OF SUPERELEVATION PARAMETERS                 
+* --------------------------------                 
+*
+* CREATE M-STRING PARAMETERS
+* --------------------------
+*
+CRMCHINT=25       * Chainage interval
+*
+CRMDRAWM=1         * Draw master string 1 = yes
+*                                       0 = no
+*
+* END OF CREATE M-STRING PARAMETERS
+* ---------------------------------
+*                                                  
+* Railway params
+* --------------
+TOGLCON1=1         * component library
+*                  * 1=Type 1
+*                  * 2=Type 2
+*                                                  
+RAILGAUG=4.6983   * STANDARD RAIL GAUGE PARAMETER (decimal feet)
+*                                                  
+*===============================================================================
+*                                                                               
+* PARAMETERS FOR 3 CENTRE CURVES                                                
+* ------------------------------                                                
+*                                                                               
+TCCANG01=15.75     * SUBTENDED ANGLE OF ARC 1.                                  
+*                    (SEE IN_ANGLE FOR UNITS = DECIMAL DEGREES)                 
+TCCANG03=20.25     * SUBTENDED ANGLE OF ARC 3.                                  
+*                    (SEE IN_ANGLE FOR UNITS = DECIMAL DEGREES)                 
+TCCRAT01=2.0       * RATIO OF RADIUS OF ARC 1 TO RADIUS OF ARC 2                
+TCCRAT03=3.0       * RATIO OF RADIUS OF ARC 3 TO RADIUS OF ARC 2                
+*
+* PARAMETERS FOR ITALIAN 3 CENTRE CURVES
+* --------------------------------------
+*
+TCCANC  =0.6       * MAX LATERAL ACCELERATION
+TCCANCD =0.6       * MAX LATERAL ACCELERATION (FREIGHT COMPONENT)
+TCCC    =0.15      * RATE OF CHANGE OF LATERAL ACCELERATION
+TCCI01  =0.2       * CANT GRADIENT (V>75)
+TCCI02  =0.15      * CANT GRADIENT (75<V<=100)
+TCCI03  =0.1       * CANT GRADIENT (100<V<=125)
+TCCI04  =0.1       * CANT GRADIENT (125<V<=160)
+TCCVELO =155.0     * ITALIAN DESIGN SPEED
+*
+*
+* DRAINAGE PARAMETERS
+*
+DRAIPROG=4         * Default program  1 --- Wallrus
+*                                     2 --- MicroRAT
+*                                     3 --- MicroDrainage Windes Version 5
+*                                     4 --- MicroDrainage Windes Version 6
+*
+DRAIMEAS=2         * Default measurement method 1 --- edge to edge
+*                                               2 --- centre to centre
+*
+DRAIRETP=1         * Global variable 1 - Return period (years-max=99)
+DRAILOCA=1         * Global variable 2 - Location (1=Eng&Wales)
+DRAIM560=15        * Global variable 5 - M5-60 (mm)
+DRAIRATI=0.5       * Global variable 6 - Ratio
+DRAIMXRF=20        * Global variable 8 - Maximum rainfall (mm)
+DRAIGTOE=5         * Global variable 13- Global time of entry (mins)
+*
+PROXCHCK=1         * Manhole and branch proximity check with carriageway
+*                    1 = on
+*                    2 = off
+*
+PIPEDIST=3.0       * Minimum distance for pipe proximity check
+PIPESIZE=0.5       * Nominal pipe size for pipe proximity check (diameter ft)
+MANHDIST=1.5       * Minimum distance for manhole proximity check
+*
+DEFMASK1=C         * Default mask 1 to be included in mask for proximity check
+DEFMASK2=C         * Default mask 2 to be included in mask for proximity check
+DEFMASK3=C         * Default mask 3 to be included in mask for proximity check
+DEFMASK4=C         * Default mask 4 to be included in mask for proximity check
+*                    The above masks can only be 4 characters long and must be
+*                    the first 4 characters after the = sign
+*
+LNGTCHCK=1         * Drainage length checking as manholes are linked
+*                    1 = on
+*                    2 = off
+*
+LNGTDIST=300.0     * Maximum distance for drainage pipe length checking
+*
+*
+* IGMACRO COLOURS
+*
+*   Available colours
+*   -----------------
+*
+*     1 --- Black
+*     2 --- Red
+*     3 --- Green
+*     4 --- Blue
+*     5 --- Cyan
+*     6 --- Yellow
+*     7 --- Orange
+*     8 --- Pink
+*     9 --- Grey
+*     10--- Paleblue
+*
+MACMESH1=5         * Mesh 1 colour
+MACMESH2=4         * Mesh 2 colour
+MACORIGN=2         * Origin colour
+MACPDPER=3         * Pen Down permiable line colour
+MACPDIMP=6         * Pen Down impermiable line colour
+MACPUIMP=1         * Pen up impermiable line colour
+*
+*
+* COMPRESS FLAG
+COMPRESS=0         * During COMPRESS create archive file as
+*                    0 = Temporary file
+*                    1 = Permanent file
+*
+*
+SKEWSECT=0         * set skew section flag
+KINKBLOC=0         * set kink block flag
+*
+*
+*Survey Parameters
+*------------------------
+*
+CURVCORR=0                 *  Curvature correction                 : 0 = Curvature correction  OFF
+*                           (Survey minor option 200 field 8)      : 1 = Curvature correction  ON
+*
+*Working v Final Drawing Parameter
+*---------------------------------
+*
+MXAPPDRG=0                 *  0 = Use working drawings
+*                             1 = Use final drawings
+*
+*SWITCH TO DETERMINE WHETHER TO INTERPOLATE OR PUT A DISCONTINUITY WHERE NO INTERFACE IS FOUND
+INTERDIS=1                 *  0 - IF THERE IS NO INTERFACE FOUND
+*                                 AT A SECTION THEN INTERPOLATE BETWEEN THE SECTIONS
+*                             1 - IF THERE IS NO INTERFACE FOUND
+*                                 PUT A DISCNTINUITY BETWEEN THE SECTIONS
+STRINGNC=1                 *  0 - String Naming Convention will not be enabled
+*                                  when a new project is created
+*                             1 - String Naming Convention will be enabled
+*                                  when a new project is created
+FINI

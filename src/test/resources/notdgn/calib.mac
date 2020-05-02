@@ -1,0 +1,9 @@
+[TerraScan macro]
+Description=Test macro
+Author=
+ByLine=-1
+
+FnScanClassifyLow(1,7,2,0.50,10.00,0)
+FnScanClassifyGround(1,2,1,15.0,88.00,6.00,1.20,-1,5.0,0,2.0,0)
+FnScanClassifyBelow(2,7,8.00,0.10,0)
+FnScanSmoothen("2",0.120,0.120,"",0)
