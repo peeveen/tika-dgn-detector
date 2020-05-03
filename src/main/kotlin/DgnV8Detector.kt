@@ -21,6 +21,7 @@ class DgnV8Detector : Detector {
     override fun detect(input: InputStream, metadata: Metadata): MediaType {
         // Check for DGN8, Microsoft Compound Document, containing telltale files.
         // Apache POI is the boy for that job.
+        input.mark(input.available())
         try {
             val poiDoc = POIFSFileSystem(object : FilterInputStream(input) {
                 // Annoyingly, POI closes the stream, and Tika does not like that, as it might
@@ -35,6 +36,9 @@ class DgnV8Detector : Detector {
             //   a) document is not a Microsoft Compound Document, or ...
             //   b) IS a Microsoft Compound Document, but is recognised by POI as a known Office format.
             // In either case, it ain't a DGN.
+        }
+        finally{
+            input.reset()
         }
         // If a Detector fails to detect a format, it must return this.
         return MediaType.OCTET_STREAM
