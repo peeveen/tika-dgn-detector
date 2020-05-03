@@ -1,4 +1,4 @@
-package com.stevenfrew.tika.detect.dgn
+package com.peeveen.tika.detect.dgn
 
 import org.apache.poi.poifs.filesystem.DocumentEntry
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
