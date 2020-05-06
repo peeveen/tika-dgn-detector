@@ -17,12 +17,47 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+dependencies {
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.apache.tika:tika-core:1.24.1")
+    implementation("org.apache.poi:poi:4.1.2")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
+}
+
+val codingCredentialsFilePath: String? = System.getenv("CODING_CREDENTIALS_FILE_PATH")
+val codingCredentialsFile =
+    if (codingCredentialsFilePath != null)
+        File(codingCredentialsFilePath)
+    else
+        null
+val codingCredentials =
+    if (codingCredentialsFile?.exists() == true)
+        codingCredentialsFile
+            .readLines()
+            .filter { it.isNotBlank() }
+            .map { it.trim().split("=") }
+            .filter { it.size > 1 }
+            .map { Pair(it[0].trim(), it.subList(1, it.size).joinToString(separator = "") { str -> str.trim() }) }
+            .toMap()
+    else
+        mapOf()
+
+gradle.taskGraph.whenReady {
+    if (allTasks.any { it is Sign }) {
+        allprojects {
+            extra["signing.keyId"] = codingCredentials["signingKeyID"]
+            extra["signing.secretKeyRingFile"] = codingCredentials["signingKeyRingFile"]
+            extra["signing.password"] = codingCredentials["signingPassword"]
+        }
+    }
+}
+
 publishing {
     repositories {
         maven {
             credentials {
-                username = findProperty("nexusUser").toString()
-                password = findProperty("nexusPass").toString()
+                username = codingCredentials["nexusUser"]
+                password = codingCredentials["nexusPass"]
             }
 
             url = if (project.version.toString().endsWith("-SNAPSHOT")) {
@@ -80,11 +115,4 @@ publishing {
 
 signing {
     sign(publishing.publications["tikaLibrary"])
-}
-
-dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.apache.tika:tika-core:1.24.1")
-    implementation("org.apache.poi:poi:4.1.2")
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
