@@ -3,9 +3,10 @@ package com.peeveen.tika.detect.dgn
 import org.apache.poi.poifs.filesystem.DocumentEntry
 import org.apache.poi.poifs.filesystem.POIFSFileSystem
 import org.apache.tika.detect.Detector
+import org.apache.tika.io.TikaInputStream
 import org.apache.tika.metadata.Metadata
 import org.apache.tika.mime.MediaType
-import java.io.FilterInputStream
+import java.io.ByteArrayInputStream
 import java.io.InputStream
 
 /**
@@ -21,13 +22,12 @@ class DgnV8Detector : Detector {
     override fun detect(input: InputStream, metadata: Metadata): MediaType {
         // Check for DGN8, Microsoft Compound Document, containing telltale files.
         // Apache POI is the boy for that job.
-        input.mark(input.available())
+        val tikaInputStream = input as TikaInputStream
+        val inputLength = tikaInputStream.length.toInt()
+        input.mark(inputLength)
         try {
-            val poiDoc = POIFSFileSystem(object : FilterInputStream(input) {
-                // Annoyingly, POI closes the stream, and Tika does not like that, as it might
-                // want to pass it to another detector. We need this dumb override to stop that.
-                override fun close() {}
-            })
+            val dgnBytes = input.readNBytes(inputLength)
+            val poiDoc = POIFSFileSystem(ByteArrayInputStream(dgnBytes))
             // If we find all the "signature" filenames, then we're happy.
             if (poiDoc.root.filterIsInstance<DocumentEntry>().map { it.name }.containsAll(dgnV8SignatureFiles))
                 return DGN_V8_MEDIA_TYPE
@@ -36,8 +36,7 @@ class DgnV8Detector : Detector {
             //   a) document is not a Microsoft Compound Document, or ...
             //   b) IS a Microsoft Compound Document, but is recognised by POI as a known Office format.
             // In either case, it ain't a DGN.
-        }
-        finally{
+        } finally {
             input.reset()
         }
         // If a Detector fails to detect a format, it must return this.
