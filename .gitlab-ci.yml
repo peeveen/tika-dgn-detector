@@ -32,4 +32,5 @@ test:
 publish:
   stage: publish
   script:
+    - echo $KEYRING_BASE64 | base64 -d > keyring.gpg
     - gradle publish --build-cache
