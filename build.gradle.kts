@@ -28,6 +28,7 @@ gradle.taskGraph.whenReady {
     if (allTasks.any { it is Sign }) {
         allprojects {
             extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
+            extra["signing.secretKeyRingFile"] = "keyring.gpg"
             extra["signing.password"] = System.getenv("SIGNING_PASSWORD")
         }
     }
