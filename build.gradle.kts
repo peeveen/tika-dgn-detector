@@ -24,30 +24,11 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.2")
 }
 
-val codingCredentialsFilePath: String? = System.getenv("CODING_CREDENTIALS_FILE_PATH")
-val codingCredentialsFile =
-    if (codingCredentialsFilePath != null)
-        File(codingCredentialsFilePath)
-    else
-        null
-val codingCredentials =
-    if (codingCredentialsFile?.exists() == true)
-        codingCredentialsFile
-            .readLines()
-            .filter { it.isNotBlank() }
-            .map { it.trim().split("=") }
-            .filter { it.size > 1 }
-            .map { Pair(it[0].trim(), it.subList(1, it.size).joinToString(separator = "") { str -> str.trim() }) }
-            .toMap()
-    else
-        mapOf()
-
 gradle.taskGraph.whenReady {
     if (allTasks.any { it is Sign }) {
         allprojects {
-            extra["signing.keyId"] = codingCredentials["signingKeyID"]
-            extra["signing.secretKeyRingFile"] = codingCredentials["signingKeyRingFile"]
-            extra["signing.password"] = codingCredentials["signingPassword"]
+            extra["signing.keyId"] = System.getenv("SIGNING_KEY_ID")
+            extra["signing.password"] = System.getenv("SIGNING_PASSWORD")
         }
     }
 }
@@ -56,8 +37,8 @@ publishing {
     repositories {
         maven {
             credentials {
-                username = codingCredentials["nexusUser"]
-                password = codingCredentials["nexusPass"]
+                username = System.getenv("NEXUS_USER")
+                password = System.getenv("NEXUS_PASSWORD")
             }
 
             url = if (project.version.toString().endsWith("-SNAPSHOT")) {
