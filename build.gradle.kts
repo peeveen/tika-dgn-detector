@@ -54,7 +54,7 @@ publishing {
             pom {
                 name.set("tika-dgn-detector")
                 description.set("A Tika Detector (not Parser!) for MicroStation DGN files (v7 & v8).")
-                url.set("https://github.com/peeveen/tika-dgn-detector")
+                url.set("https://gitlab.com/peeveen/tika-dgn-detector")
                 developers {
                     developer {
                         id.set("peeveen")
@@ -63,7 +63,7 @@ publishing {
                     }
                 }
                 scm {
-                    url.set("https://github.com/peeveen/tika-dgn-detector")
+                    url.set("https://gitlab.com/peeveen/tika-dgn-detector")
                 }
                 licenses {
                     license {
