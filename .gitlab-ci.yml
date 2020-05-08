@@ -3,7 +3,7 @@ image: java:8-jdk
 stages:
   - build
   - test
-  - deploy
+  - publish
 
 before_script:
   - export GRADLE_USER_HOME=.gradle
