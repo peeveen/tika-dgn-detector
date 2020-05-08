@@ -1,4 +1,4 @@
-image: java:8-jdk
+image: gradle:6.3.0-jdk11
 
 stages:
   - build
@@ -16,7 +16,7 @@ cache:
 build:
   stage: build
   script:
-    - ./gradlew assemble
+    - gradle assemble
   artifacts:
     paths:
       - build/libs/*.jar
@@ -27,9 +27,9 @@ build:
 test:
   stage: test
   script:
-    - ./gradlew check
+    - gradle check
 
 publish:
   stage: publish
   script:
-    - ./gradlew publish
+    - gradle publish
