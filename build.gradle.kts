@@ -74,7 +74,7 @@ publishing {
             }
             groupId = "com.github.peeveen"
             artifactId = "tika-dgn-detector"
-            version = "0.3"
+            version = "0.4"
             from(components["java"])
 
             val sourcesJar by tasks.creating(Jar::class) {
