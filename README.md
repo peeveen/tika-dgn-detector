@@ -8,4 +8,7 @@ identifying a set of common filenames within.
 
 # How to get it
 
+Available from Maven Central
+```
 implementation("com.github.peeveen:tika-dgn-detector:0.4")
+```
