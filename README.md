@@ -1,3 +1,5 @@
+![build](https://github.com/peeveen/tika-dgn-detector/actions/workflows/build.yml/badge.svg)
+
 # tika-dgn-detector
 An Apache Tika Detector (not a Parser!) for MicroStation DGN drawings (v7 &amp; v8)
 
